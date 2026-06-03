@@ -138,10 +138,9 @@ function startNotifications(user) {
         notifications.push({
           id: `comment_${docSnap.id}_${comment.authorUid || "anon"}_${normalizeNotificationDate(comment.timestamp) || index}`,
           type: "comment",
-          text: `${comment.authorName || "Qualcuno"} ha commentato “${title}": ${comment.text || ""}`,
+          text: `${comment.authorName || "Qualcuno"} ha commentato “${title}”: ${comment.text || ""}`,
           date: comment.timestamp || project.createdAt || ""
         });
-      });
       });
     });
 

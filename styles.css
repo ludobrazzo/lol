@@ -1,0 +1,845 @@
+/* Importa il font principale usato in tutto il sito. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
+
+/* Variabili globali: colori, raggio bordi e ombra riutilizzati nel CSS. */
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --radius: 16px;
+  --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* Reset base: evita spazi automatici e rende più prevedibili le dimensioni. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Stile generale della pagina. */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Barra di navigazione con effetto vetro e posizione fissa in alto. */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  text-decoration: none;
+}
+.brand span {
+  color: var(--primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Sezione iniziale della home con titolo e area caricamento. */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.hero span {
+  color: var(--primary);
+}
+
+/* Bottoni riutilizzabili per azioni principali e secondarie. */
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid #e2e8f0;
+}
+.btn-secondary:hover {
+  border-color: var(--primary);
+  background: #f8fafc;
+}
+
+/* =========================================
+   STILI PER L'UPLOAD E I FORM MIGLIORATI
+   ========================================= */
+
+/* Card del modulo caricamento. */
+.upload-card, .upload-section {
+  background: var(--surface);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* Stile base per campi testo e menu a tendina */
+.form-group input, .form-group select, .form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+/* Effetto luminoso quando l'utente clicca per scrivere */
+.form-group input:focus, .form-group select:focus, .form-control:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* MAGIA: Personalizzazione dell'Input File */
+/* MAGIA: Personalizzazione dell'Input File in stile Drag & Drop */
+input[type="file"] {
+  width: 100%;
+  padding: 40px 20px;
+  background: var(--surface);
+  border: 2px dashed #cbd5e1;
+  border-radius: 24px; /* Rettangoli molto più tondeggianti */
+  text-align: center;
+  cursor: pointer;
+  /* Rendiamo trasparente il testo di default del browser */
+  color: transparent; 
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+input[type="file"]:hover {
+  border-color: var(--primary);
+  background: #f8fafc;
+}
+
+/* Testo principale personalizzato (Titolo) */
+input[type="file"]::before {
+  content: '📁 Clicca per caricare o trascina il file qui';
+  display: block;
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Testo secondario personalizzato (Sottotitolo) */
+input[type="file"]::after {
+  content: 'Supporta PDF, DOCX, JPG, PNG';
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+/* Pulsante interno impaginato sotto ai testi */
+input[type="file"]::file-selector-button {
+  display: block;
+  margin: 0 auto; /* Centra il bottone */
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--primary-hover);
+}
+
+/* =========================================
+   RESTO DEL CSS (Modali, Griglia, ecc.)
+   ========================================= */
+
+/* Sfondo scuro dei popup/modal. */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px;
+  animation: slideUp 0.3s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+/* GRIGLIA APPUNTI */
+.search-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+#search-bar {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+/* Griglia responsive per mostrare card/appunti. */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding-bottom: 50px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  background-color: #f1f5f9;
+  cursor: pointer;
+}
+.card-content {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.card-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.card-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* LIKE & COMMENTI */
+.social-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+.social-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.social-btn:hover { color: var(--primary); }
+.social-btn.active-like { color: #ef4444; }
+.social-btn.active-fav { color: #eab308; }
+
+/* STILE COMMENTI */
+.comment-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+}
+.comment-list {
+  flex: 1;
+  overflow-y: auto;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.comment-box {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.comment-author {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 3px;
+}
+.comment-input-row {
+  display: flex;
+  gap: 10px;
+}
+.comment-input-row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* PROFILO E PULSANTI ELIMINA */
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-right: 72px; /* Tiene il pulsante Esci lontano dalla X di chiusura. */
+}
+.profile-logout-btn {
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  background: #fff5f5;
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.profile-logout-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+.delete-modal-content {
+  max-width: 420px;
+  text-align: center;
+}
+.delete-modal-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: #fff5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+}
+.delete-modal-content p {
+  color: var(--text-muted);
+  margin: 10px 0 20px;
+}
+.delete-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.delete-modal-actions button {
+  flex: 1;
+}
+.delete-confirm-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.delete-confirm-btn:hover {
+  background: #dc2626;
+}
+@media (max-width: 560px) {
+  .profile-header {
+    flex-direction: column;
+    padding-right: 0;
+    padding-top: 18px; /* Evita che Esci finisca troppo vicino alla X anche su schermi piccoli. */
+  }
+  .profile-logout-btn {
+    width: 100%;
+  }
+  .delete-modal-actions {
+    flex-direction: column;
+  }
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+.profile-tabs button {
+  flex: 1;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* =========================================
+   NAVBAR E AZIONI
+   ========================================= */
+.nav-actions {
+  display: flex;
+  gap: 20px; /* Distanza tra gli elementi */
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-end; /* Spinge tutto verso destra */
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-actions button {
+  padding: 8px 16px;
+  width: auto;
+}
+
+
+/* =========================================
+   CAMPANELLA NOTIFICHE
+   ========================================= */
+/* Campanella notifiche e pannello a discesa. */
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-btn {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.notification-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.notification-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 340px;
+  max-width: calc(100vw - 30px);
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 20px 35px rgba(15, 23, 42, 0.16);
+  overflow: hidden;
+  z-index: 3000;
+}
+
+.notification-panel.open {
+  display: block;
+}
+
+.notification-panel-header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-panel-header button {
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.notification-list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  gap: 10px;
+  padding: 13px 16px;
+  border-bottom: 1px solid #f8fafc;
+  color: var(--text-main);
+}
+
+.notification-item.unread {
+  background: #eef2ff;
+}
+
+.notification-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.notification-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.notification-item small {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.empty-notifications {
+  padding: 22px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+
+/* Correzione mobile: centra il pannello notifiche nello schermo così non esce tagliato ai lati. */
+@media (max-width: 768px) {
+  .notification-panel {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(360px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    max-height: min(65vh, 420px);
+  }
+
+  .notification-list {
+    max-height: min(55vh, 340px);
+  }
+}
+
+/* =========================================
+   RESPONSIVITÀ (Smartphone e Tablet)
+   ========================================= */
+/* Regole responsive: adattano il layout agli schermi piccoli. */
+@media (max-width: 768px) {
+  /* Riorganizza la navbar per evitare l'accavallamento */
+  .glass-nav {
+    padding: 1rem;
+    flex-wrap: wrap; /* Permette agli elementi di andare a capo */
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .nav-actions {
+    justify-content: center;
+    width: 100%; /* Fa prendere ai bottoni tutta la larghezza disponibile */
+    gap: 15px;
+  }
+
+  /* Rimpicciolisce il testo gigante nella home page */
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem; 
+  }
+
+  /* Adatta il box di caricamento file */
+  .upload-section {
+    padding: 20px 15px;
+  }
+
+  input[type="file"] {
+    padding: 30px 10px;
+  }
+
+  input[type="file"]::before {
+    font-size: 0.95rem; /* Testo del drag&drop più piccolo */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Su schermi piccolissimi, incolonno gli elementi del menu */
+  .nav-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-actions button, .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* =========================================
+   NOTIFICHE TOAST
+   ========================================= */
+#toast-container {
+  position: fixed;
+  bottom: 105px; /* Sopra la bolla del WikiBot */
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 10001; /* Sopra la bolla del bot */
+  max-width: calc(100vw - 50px);
+}
+
+.toast {
+  min-width: 250px;
+  max-width: 360px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 5px solid var(--primary); /* Colore base */
+  animation: slideInRight 0.3s ease-out forwards;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Varianti di colore per il bordo sinistro */
+.toast.success { border-left-color: #10b981; } /* Verde smeraldo */
+.toast.error { border-left-color: #ef4444; }   /* Rosso */
+.toast.info { border-left-color: #3b82f6; }    /* Blu */
+
+/* Animazione di entrata da destra */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Classe aggiunta via JS per far sparire il toast in modo fluido */
+.toast.fade-out {
+  opacity: 0;
+}
+
+
+#chatbot-send-btn {
+  width: 45px;        /* Larghezza fissa */
+  height: 45px;       /* Altezza identica alla larghezza */
+  border-radius: 50%; /* Questo è il trucco magico per il cerchio perfetto! */
+  padding: 0;         /* Rimuove lo spazio interno che lo deformava */
+  flex-shrink: 0;     /* Impedisce alla barra di testo di "schiacciarlo" */
+  
+  /* Centra perfettamente l'icona o il testo all'interno */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.notif-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  border-radius: 50%;
+  font-weight: bold;
+  display: none; /* Nascosto se zero */
+}
+
+.notif-badge.active {
+  display: block;
+}
+
+.notif-panel {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 280px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 2000;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.notif-panel.show {
+  display: flex;
+}
+
+.notif-header {
+  padding: 12px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.notif-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.notif-item:hover {
+  background: #f1f5f9;
+}
+
+.notif-item.unread {
+  background: #eff6ff;
+  border-left: 3px solid var(--primary);
+}
+
+.notif-empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+

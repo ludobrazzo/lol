@@ -580,6 +580,7 @@
 
     closeBtn.addEventListener('click', () => {
       panel.classList.remove('active');
+      sessionStorage.removeItem('wikibot_panel_open');
     });
 
     galleryBtn.addEventListener('click', () => fileGallery.click());
@@ -597,7 +598,7 @@
           previewImg.src = base64String;
           previewArea.classList.add('active');
           
-          sessionStorage.setItem('wikibot_panel_open', 'true');
+          panel.classList.add('active');
           textInput.focus();
         };
         reader.readAsDataURL(file);
@@ -769,11 +770,8 @@
       }
     });
 
-    if (sessionStorage.getItem('wikibot_panel_open') === 'true') {
-      panel.classList.add('active');
-      sessionStorage.removeItem('wikibot_panel_open');
-      scrollToBottom();
-    }
+    // Non riaprire automaticamente il chatbot al caricamento della pagina.
+    sessionStorage.removeItem('wikibot_panel_open');
 
   })();
 </script>
